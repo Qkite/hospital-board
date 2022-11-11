@@ -46,5 +46,15 @@ public class HospitalController {
     
     // Pageable만 추가하면 page가 추가가 된다
 
+    @GetMapping("/search")
+    public String search(String keyword, Model model){
+
+        List<Hospital> searchList = hospitalRepository.findByHospitalNameContaining(keyword);
+
+        model.addAttribute("searchList", searchList);
+
+        return "search";
+    }
+
 }
 
