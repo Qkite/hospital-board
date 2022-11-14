@@ -11,5 +11,7 @@ public interface HospitalRepository extends JpaRepository<Hospital, Integer> {
 
     List<Hospital> findByBusinessTypeNameInAndRoadNameAddressContaining(List<String> categoryList, String roadNameAddress);
 
+    List<Hospital> findByTotalNumberOfBedsBetween(int num1, int num2);
+
 }
 
