@@ -23,11 +23,18 @@ class HospitalRepositoryTest {
         category.add("보건소");
         category.add("보건진료소");
 
-        List<Hospital> hospitalList = hospitalRepository.findByBusinessTypeNameIn(category);
-        for (Hospital hospital:hospitalList) {
+//        List<Hospital> hospitalList = hospitalRepository.findByBusinessTypeNameIn(category);
+//        for (Hospital hospital:hospitalList) {
+//            System.out.println(hospital.getHospitalName());
+//
+//        }
+
+        List<Hospital> hospitalList1 = hospitalRepository.findByBusinessTypeNameInAndRoadNameAddressContaining(category, "서울특별시 성북구");
+        for (Hospital hospital:hospitalList1) {
             System.out.println(hospital.getHospitalName());
 
         }
+
     }
 
 
