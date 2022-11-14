@@ -44,11 +44,27 @@ class HospitalRepositoryTest {
     void test2(){
         int start = 10;
         int end = 20;
-        List<Hospital> hospitalList2 = hospitalRepository.findByTotalNumberOfBedsBetween(start,end-1);
+        List<Hospital> hospitalList2 = hospitalRepository.findByTotalNumberOfBedsBetweenOrderByTotalNumberOfBedsDesc(start,end-1);
 
         for (Hospital hospital:hospitalList2) {
             System.out.print("병원명: " + hospital.getHospitalName());
             System.out.println(", 병상수: " + hospital.getTotalNumberOfBeds());
+
+        }
+
+    }
+
+    @Test
+    @DisplayName("서울시 병원 입원실 수 기준으로 정렬")
+    void test3(){
+
+        List<Hospital> hospitalList3 = hospitalRepository.findByRoadNameAddressContainingOrderByPatientRoomCount("서울특별시");
+
+        for (Hospital hospital:hospitalList3) {
+            System.out.print("병원명: " + hospital.getHospitalName());
+            System.out.println(", 입원실수: " + hospital.getPatientRoomCount());
+            System.out.println();
+
 
         }
 
