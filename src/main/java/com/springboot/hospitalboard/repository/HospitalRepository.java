@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface HospitalRepository extends JpaRepository<Hospital, Integer> {
     List<Hospital> findByHospitalNameContaining(String keyword);
+    List<Hospital> findByBusinessTypeNameIn(List<String> categoryList);
 
 }
 
