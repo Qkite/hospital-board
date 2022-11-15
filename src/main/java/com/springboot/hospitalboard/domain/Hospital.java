@@ -52,6 +52,7 @@ public class Hospital {
     @Column(name = "total_area_size")
     private float totalAreaSize;
 
+
     public Hospital(int businessStatus, int healthcareProviderCount, int patientRoomCount, int totalNumberOfBeds) {
         this.businessStatus = businessStatus;
         this.healthcareProviderCount = healthcareProviderCount;
@@ -77,5 +78,9 @@ public class Hospital {
         this.healthcareProviderCount = healthcareProviderCount;
         this.patientRoomCount = patientRoomCount;
         this.totalNumberOfBeds = totalNumberOfBeds;
+    }
+
+    public static HospitalResponse of(Hospital hospital){
+        return new HospitalResponse(hospital.getId(), hospital.getManagementNumber(), hospital.getRoadNameAddress(), hospital.getHospitalName(), hospital.businessTypeName, hospital.getHealthcareProviderCount(),hospital.getPatientRoomCount(), hospital.getTotalNumberOfBeds());
     }
 }
