@@ -19,7 +19,6 @@ public class HospitalResponse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String managementNumber;
-    private int businessStatus;
     private String phone;
     private String roadNameAddress;
     private String hospitalName;
@@ -28,6 +27,9 @@ public class HospitalResponse {
     private int patientRoomCount;
     private int totalNumberOfBeds;
     private float totalAreaSize;
+
+
+    private String businessStatusName;
 
     public HospitalResponse(int id, String managementNumber, String roadNameAddress, String hospitalName, String businessTypeName,
                             int healthcareProviderCount, int patientRoomCount, int totalNumberOfBeds) {
@@ -39,6 +41,12 @@ public class HospitalResponse {
         this.healthcareProviderCount = healthcareProviderCount;
         this.patientRoomCount = patientRoomCount;
         this.totalNumberOfBeds = totalNumberOfBeds;
-
     }
+
+    public void setBusinessStatusName(String businessStatusName) {
+        this.businessStatusName = businessStatusName;
+    }
+
+
+
 }
