@@ -33,6 +33,10 @@ public class HospitalRestController {
     public ResponseEntity<HospitalResponse> get(@PathVariable Integer id){
         Optional<Hospital> hospital = hospitalRepository.findById(id); // entity
         HospitalResponse hospitalResponse = new HospitalResponse(); // DTO
+        hospitalResponse = Hospital.of(hospital.get());
+
+
+        // hospital.of()로 하면 다른 함수가 호출됨?
         return ResponseEntity.ok().body(hospitalResponse); // return은 DTO로
     }
 }
