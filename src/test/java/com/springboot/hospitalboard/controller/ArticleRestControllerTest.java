@@ -1,6 +1,8 @@
 package com.springboot.hospitalboard.controller;
 
+import com.springboot.hospitalboard.domain.ArticleResponse;
 import com.springboot.hospitalboard.domain.HospitalResponse;
+import com.springboot.hospitalboard.service.ArticleService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -27,14 +29,14 @@ class ArticleRestControllerTest {
     @Test
     void test1() throws Exception {
         ArticleResponse articleResponse = ArticleResponse.builder()
-                .id(1)
+                .id(1L)
                 .content("첫번째게시글입니다")
                 .title("1번")
                 .build();
 
-        given(articleService.getArticle(1)).willReturn(articleResponse);
+        given(articleService.getArticle((long)1)).willReturn(articleResponse);
 
-        int articleId = 1;
+        long articleId = 1;
 
         String url = String.format("/api/v1/articles/%d", articleId);
         mockMvc.perform(get(url))
