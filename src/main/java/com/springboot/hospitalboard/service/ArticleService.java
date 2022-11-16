@@ -1,9 +1,6 @@
 package com.springboot.hospitalboard.service;
 
-import com.springboot.hospitalboard.domain.Article;
-import com.springboot.hospitalboard.domain.ArticleResponse;
-import com.springboot.hospitalboard.domain.Hospital;
-import com.springboot.hospitalboard.domain.HospitalResponse;
+import com.springboot.hospitalboard.domain.*;
 import com.springboot.hospitalboard.repository.ArticleRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +25,14 @@ public class ArticleService {
         Article article = articleOptional.get();
         ArticleResponse articleResponse = Article.of(article);
         return articleResponse;
+    }
+
+    public ArticleAddResponse addArticle(ArticleAddRequest articleAddRequest) {
+        Article article = articleAddRequest.toEntity();
+        Article savedArticle = articleRepository.save(article);
+
+        ArticleAddResponse articleAddResponse = new ArticleAddResponse(savedArticle.getId(), savedArticle.getTitle(), savedArticle.getContent());
+
+        return articleAddResponse;
     }
 }

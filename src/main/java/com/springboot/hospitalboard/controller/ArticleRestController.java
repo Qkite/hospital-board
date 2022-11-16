@@ -1,14 +1,13 @@
 package com.springboot.hospitalboard.controller;
 
+import com.springboot.hospitalboard.domain.ArticleAddRequest;
+import com.springboot.hospitalboard.domain.ArticleAddResponse;
 import com.springboot.hospitalboard.domain.ArticleResponse;
 import com.springboot.hospitalboard.domain.HospitalResponse;
 import com.springboot.hospitalboard.service.ArticleService;
 import com.springboot.hospitalboard.service.HospitalService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/articles")
@@ -26,6 +25,12 @@ public class ArticleRestController {
     public ResponseEntity<ArticleResponse> get(@PathVariable Long id){
         ArticleResponse articleResponse = articleService.getArticle(id);
 
+        return ResponseEntity.ok().body(articleResponse);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<ArticleAddResponse> addArticle(@RequestBody ArticleAddRequest articleAddRequest){
+        ArticleAddResponse articleResponse = articleService.addArticle(articleAddRequest);
         return ResponseEntity.ok().body(articleResponse);
     }
 
