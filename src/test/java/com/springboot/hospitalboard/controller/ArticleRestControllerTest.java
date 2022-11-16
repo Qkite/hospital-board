@@ -18,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -68,7 +69,7 @@ class ArticleRestControllerTest {
     void test2() throws Exception {
         ArticleAddRequest articleAddRequest = new ArticleAddRequest("제목", "내용");
 
-        given(articleService.addArticle(articleAddRequest))
+        given(articleService.addArticle(any()))
                 .willReturn(new ArticleAddResponse(1L, articleAddRequest.getTitle(), articleAddRequest.getContent()));
 
         mockMvc.perform(post("/api/v1/articles/add").content(objectMapper.writeValueAsBytes(articleAddRequest))
@@ -79,7 +80,7 @@ class ArticleRestControllerTest {
                 .andExpect(jsonPath("$.content").value("내용"))
                 .andDo(print());
 
-        verify(articleService).addArticle(articleAddRequest);
+        verify(articleService).addArticle(any());
 
 
 
