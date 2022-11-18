@@ -32,4 +32,6 @@ public class HospitalRestController {
         // hospital.of()로 하면 다른 함수가 호출됨?
         return ResponseEntity.ok().body(hospitalResponse); // return은 DTO로
     }
+
+
 }

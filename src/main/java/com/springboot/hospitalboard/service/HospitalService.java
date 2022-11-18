@@ -5,6 +5,7 @@ import com.springboot.hospitalboard.domain.HospitalResponse;
 import com.springboot.hospitalboard.repository.HospitalRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,6 +35,8 @@ public class HospitalService {
 
         return hospitalResponse;
     }
+
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.springboot.hospitalboard.controller;
 
 import com.springboot.hospitalboard.domain.Hospital;
+import com.springboot.hospitalboard.domain.HospitalResponse;
 import com.springboot.hospitalboard.repository.HospitalRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -27,11 +29,11 @@ public class HospitalController {
         this.hospitalRepository = hospitalRepository;
     }
 
-    @GetMapping("")
-    public String mainDisplay(){
-
-        return "redirect:/hospital/list";
-    }
+//    @GetMapping("")
+//    public String mainDisplay(){
+//
+//        return "redirect:/hospital/list";
+//    }
 
 
     @GetMapping("/list")
@@ -59,6 +61,18 @@ public class HospitalController {
         model.addAttribute("searchList", searchList);
 
         return "search";
+    }
+
+    @GetMapping("")
+    public String findHospitalUsingAddress(@RequestParam String keyword, @PageableDefault(page=1, size=20) Pageable pageable , Model model){
+
+        Page<Hospital> hospitalList = hospitalRepository.findByRoadNameAddressContaining(keyword, pageable);
+
+        model.addAttribute("hospitals", hospitalList);
+        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+        model.addAttribute("next", pageable.next().getPageNumber());
+
+        return "list";
     }
 
 }
