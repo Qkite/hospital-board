@@ -64,11 +64,12 @@ public class HospitalController {
     }
 
     @GetMapping("")
-    public String findHospitalUsingAddress(@RequestParam String keyword, @PageableDefault(page=1, size=20) Pageable pageable , Model model){
+    public String findHospitalUsingAddress(@RequestParam(required = false) String keyword, @PageableDefault(page=1, size=20) Pageable pageable , Model model){
 
         Page<Hospital> hospitalList = hospitalRepository.findByRoadNameAddressContaining(keyword, pageable);
 
         model.addAttribute("hospitals", hospitalList);
+        model.addAttribute("keyword", keyword);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
 

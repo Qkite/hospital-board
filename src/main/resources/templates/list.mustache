@@ -76,14 +76,30 @@
 
 </table>
 
-<ul class="pagination justify-content-center">
-    <li class="page-item">
-        <a class="page-link" href="?page={{previous}}">Previous</a>
-    </li>
-    <li class="page-item">
-        <a class="page-link" href="?page={{next}}">Next</a>
-    </li>
-</ul>
+{{#keyword}}
 
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            <a class="page-link" href="?page={{previous}}&keyword={{keyword}}">Previous</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{next}}&keyword={{keyword}}">Next</a>
+        </li>
+    </ul>
+
+{{/keyword}}
+
+{{^keyword}}
+
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            <a class="page-link" href="?page={{previous}}">Previous</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{next}}">Next</a>
+        </li>
+    </ul>
+
+{{/keyword}}
 
 {{>layouts/footer}}
