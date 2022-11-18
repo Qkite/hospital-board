@@ -1,8 +1,16 @@
 {{>layouts/header}}
 
 <div class="input-group mb-3">
-    <input type="text" name="keyword" class="form-control" placeholder="도로명 주소를 검색하세요" aria-label="Recipient's username" aria-describedby="button-addon2">
-    <button class="btn btn-outline-secondary" type="button" id="button-addon2">입력</button>
+    {{#keyword}}
+        <input type="text" name="keyword" class="form-control" placeholder="도로명 주소를 검색하세요" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2" href="?page={{current}}&keyword={{keyword}}">입력</button>
+    {{/keyword}}
+    {{^keyword}}
+        <input type="text" name="keyword" class="form-control" placeholder="도로명 주소를 검색하세요" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2" href="?page={{current}}">입력</button>
+
+    {{/keyword}}
+
 </div>
 
 <table class="table">
