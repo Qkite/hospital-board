@@ -1,6 +1,7 @@
 package com.springboot.hospitalboard.repository;
 
 import com.springboot.hospitalboard.domain.Hospital;
+import com.springboot.hospitalboard.domain.Visit;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ class HospitalRepositoryTest {
 
     @Autowired
     HospitalRepository hospitalRepository;
+
+    @Autowired
+    VisitRepository visitRepository;
 
     @Test
     void test1(){
@@ -68,6 +72,18 @@ class HospitalRepositoryTest {
 
         }
 
+    }
+
+    @Test
+    @DisplayName("Auditing이 제대로 작동하는지 테스트")
+    public void auditingTest(){
+
+        Visit visit = new Visit("손목통증", 2000);
+
+        Visit visit1 = visitRepository.save(visit);
+
+        System.out.println(visit1.getDisease());
+        System.out.println(visit1.getCreatedAt());
     }
 
 
